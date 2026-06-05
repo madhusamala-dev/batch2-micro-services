@@ -8,10 +8,11 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/api/customers/**
+            - Path=/api/auth/**
+            - Path=/api/users/**
 
         - id: product-service
-          uri: lb://USER-SERVICE
+          uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/api/products/**
 eureka:

@@ -12,51 +12,52 @@ public class AuthorizationConfig {
 
         return Map.of(
 
-                "GET:/products",
+                "GET:/api/products",
                 List.of(
                         "ROLE_ADMIN",
                         "ROLE_CUSTOMER"
                 ),
 
-                "POST:/products",
+                "POST:/api/products",
                 List.of(
                         "ROLE_ADMIN"
                 ),
 
-                "PUT:/products",
+                "PUT:/api/products",
                 List.of(
                         "ROLE_ADMIN"
                 ),
 
-                "PATCH:/products",
+                "PATCH:/api/products",
                 List.of(
                         "ROLE_ADMIN"
                 ),
 
-                "DELETE:/products",
+                "DELETE:/api/products",
                 List.of(
                         "ROLE_ADMIN"
                 ),
 
-                "GET:/users",
+                "GET:/api/users",
                 List.of(
                         "ROLE_ADMIN",
                         "ROLE_CUSTOMER"
                 ),
 
-                "POST:/users",
+                "POST:/api/users",
                 List.of(
                         "ROLE_ADMIN"
                 ),
 
-                "PUT:/users",
+                "PUT:/api/users",
                 List.of(
                         "ROLE_ADMIN"
                 ),
 
-                "DELETE:/users",
+                "DELETE:/api/users",
                 List.of(
-                        "ROLE_ADMIN"
+                        "ROLE_ADMIN",
+                        "ROLE_CUSTOMER"
                 )
         );
     }

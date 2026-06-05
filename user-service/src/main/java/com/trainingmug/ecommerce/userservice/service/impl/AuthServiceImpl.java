@@ -8,7 +8,7 @@ import com.trainingmug.ecommerce.userservice.entity.User;
 import com.trainingmug.ecommerce.userservice.exception.InvalidCredentialsException;
 import com.trainingmug.ecommerce.userservice.exception.UserExistsException;
 import com.trainingmug.ecommerce.userservice.exception.UserNotFoundException;
-import com.trainingmug.ecommerce.userservice.security.JwtUtil;
+import com.trainingmug.ecommerce.userservice.util.JwtUtil;
 import com.trainingmug.ecommerce.userservice.service.AuthService;
 import com.trainingmug.ecommerce.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;

@@ -31,15 +31,12 @@ public class GatewayExceptionHandler
                 HttpStatus.INTERNAL_SERVER_ERROR;
 
         if(ex instanceof UnauthorizedException) {
-
             status = HttpStatus.UNAUTHORIZED;
         }
         else if(ex instanceof ForbiddenException) {
-
             status = HttpStatus.FORBIDDEN;
         }
         else if(ex instanceof ServiceUnavailableException) {
-
             status = HttpStatus.SERVICE_UNAVAILABLE;
         }
 

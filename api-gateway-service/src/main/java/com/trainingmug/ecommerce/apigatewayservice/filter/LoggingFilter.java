@@ -28,6 +28,7 @@ public class LoggingFilter
                 ==========================================
                 Method       : {}
                 URI          : {}
+                Headers      : {}
                 Host         : {}
                 Query Params : {}
                 Timestamp    : {}
@@ -36,6 +37,7 @@ public class LoggingFilter
                 """,
                 exchange.getRequest().getMethod(),
                 exchange.getRequest().getURI(),
+                exchange.getRequest().getHeaders(),
                 exchange.getRequest()
                         .getHeaders()
                         .getHost(),

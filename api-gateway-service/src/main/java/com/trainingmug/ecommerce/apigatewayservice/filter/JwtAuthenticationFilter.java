@@ -28,8 +28,8 @@ public class JwtAuthenticationFilter
 
     private static final List<String> PUBLIC_APIS =
             List.of(
-                    "/auth/login",
-                    "/auth/signup",
+                    "/api/auth/login",
+                    "/api/auth/signup",
                     "/swagger-ui",
                     "/v3/api-docs"
             );
@@ -49,7 +49,7 @@ public class JwtAuthenticationFilter
                         .anyMatch(path::startsWith);
 
         if (isPublicApi) {
-
+            log.info("public api : {} ", path);
             return chain.filter(exchange);
         }
 
@@ -132,14 +132,14 @@ public class JwtAuthenticationFilter
     private String determineRoute(
             String path) {
 
-        if (path.startsWith("/products")) {
+        if (path.startsWith("/api/products")) {
 
-            return "/products";
+            return "/api/products";
         }
 
-        if (path.startsWith("/users")) {
+        if (path.startsWith("/api/users")) {
 
-            return "/users";
+            return "/api/users";
         }
 
         return "";
@@ -147,7 +147,6 @@ public class JwtAuthenticationFilter
 
     @Override
     public int getOrder() {
-
         return 2;
     }
 }
