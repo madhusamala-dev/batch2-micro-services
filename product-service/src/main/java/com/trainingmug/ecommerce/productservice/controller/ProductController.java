@@ -1,4 +1,4 @@
-package com.trainingmug.ecommerce.productservice.controller;
+package java.com.trainingmug.ecommerce.productservice.controller;
 
 import com.trainingmug.ecommerce.productservice.dto.request.ProductRequestDto;
 import com.trainingmug.ecommerce.productservice.dto.request.ProductUpdateRequestDto;
@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.com.trainingmug.ecommerce.productservice.dto.response.ApiResponseDto;
 import java.util.List;
 
 @RestController
@@ -30,10 +31,17 @@ public class ProductController {
      */
 
     @PostMapping
-    public ResponseEntity<ProductResponseDto> save(
+    public ResponseEntity<ApiResponseDto<ProductResponseDto>> save(
             @RequestBody ProductRequestDto requestDto) {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(requestDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                ApiResponseDto.<ProductResponseDto>builder().
+                        success(true).
+                        status(HttpStatus.CREATED.value()).
+                        message("Product Created Successfully").
+                        data(productService.save(requestDto)).
+                        build());
+
     }
 
     /*
@@ -43,9 +51,16 @@ public class ProductController {
      */
 
     @GetMapping("/{productId}")
-    public ResponseEntity<ProductResponseDto> getProductById(
+    public ResponseEntity<ApiResponseDto<ProductResponseDto>> getProductById(
             @PathVariable String productId) {
-        return ResponseEntity.ok(productService.getById(productId));
+        return ResponseEntity.ok(
+                ApiResponseDto.<ProductResponseDto>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Product Retrieved Successfully").
+                        data(productService.getById(productId)).
+                        build());
+
     }
 
     /*
@@ -55,8 +70,15 @@ public class ProductController {
      */
 
     @GetMapping
-    public ResponseEntity<List<ProductResponseDto>> getAll() {
-        return ResponseEntity.ok(productService.getAll());
+    public ResponseEntity<ApiResponseDto<List<ProductResponseDto>>> getAll() {
+        return ResponseEntity.ok(
+                ApiResponseDto.<List<ProductResponseDto>>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Products Retrieved Successfully").
+                        data(productService.getAll()).
+                        build());
+
     }
 
     /*
@@ -66,14 +88,19 @@ public class ProductController {
      */
 
     @PutMapping("/{productId}")
-    public ResponseEntity<ProductResponseDto> update(
+    public ResponseEntity<ApiResponseDto<ProductResponseDto>> update(
             @PathVariable String productId,
             @RequestBody ProductUpdateRequestDto requestDto) {
 
-        return ResponseEntity.ok(productService.update(
-                productId,
-                requestDto
-        ));
+        return ResponseEntity.ok(
+                ApiResponseDto.<ProductResponseDto>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Product Updated Successfully").
+                        data(productService.update(productId, requestDto)).
+                        build());
+
+
     }
 
     /*
@@ -83,9 +110,15 @@ public class ProductController {
      */
 
     @DeleteMapping("/{productId}")
-    public ResponseEntity<?> delete(@PathVariable String productId) {
+    public ResponseEntity<ApiResponseDto<Void>> delete(@PathVariable String productId) {
         productService.delete(productId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(
+                 ApiResponseDto.<Void>builder()
+                         .success(true)
+                         .status(HttpStatus.OK.value())
+                         .message("Product Deleted Successfully")
+                         .build()
+                );
     }
 
     /*
@@ -95,16 +128,20 @@ public class ProductController {
      */
 
     @GetMapping("/pagination")
-    public ResponseEntity<Page<ProductResponseDto>> getAllByPage(
+    public ResponseEntity<ApiResponseDto<Page<ProductResponseDto>>> getAllByPage(
             @RequestParam int page,
             @RequestParam int size,
             @RequestParam String sortBy) {
 
-        return ResponseEntity.ok(productService.getAllByPage(
-                page,
-                size,
-                sortBy
-        ));
+        return ResponseEntity.ok(
+                ApiResponseDto.<Page<ProductResponseDto>>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Products Retrieved Successfully").
+                        data(productService.getAllByPage(page, size, sortBy)).
+                        build());
+
+
     }
 
     /*
@@ -114,9 +151,16 @@ public class ProductController {
      */
 
     @GetMapping("/category/{category}")
-    public ResponseEntity<List<ProductResponseDto>> getProductsByCategory(
+    public ResponseEntity<ApiResponseDto<List<ProductResponseDto>>> getProductsByCategory(
             @PathVariable Category category) {
-        return ResponseEntity.ok(productService.getByCategory(category));
+        return ResponseEntity.ok(
+                ApiResponseDto.<List<ProductResponseDto>>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Products Retrieved Successfully").
+                        data(productService.getByCategory(category)).
+                        build());
+
     }
 
     /*
@@ -126,10 +170,17 @@ public class ProductController {
      */
 
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<ProductResponseDto>> getProductsByStatus(
+    public ResponseEntity<ApiResponseDto<List<ProductResponseDto>>> getProductsByStatus(
             @PathVariable Status status) {
 
-        return ResponseEntity.ok(productService.getByStatus(status));
+        return ResponseEntity.ok(
+                ApiResponseDto.<List<ProductResponseDto>>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Products Retrieved Successfully").
+                        data(productService.getByStatus(status)).
+                        build());
+
     }
 
     /*
@@ -139,8 +190,15 @@ public class ProductController {
      */
 
     @GetMapping("/top-rated")
-    public ResponseEntity<List<ProductResponseDto>> getTopRatedProducts() {
-        return ResponseEntity.ok(productService.getTopRatedProducts());
+    public ResponseEntity<ApiResponseDto<List<ProductResponseDto>>> getTopRatedProducts() {
+        return ResponseEntity.ok(
+                ApiResponseDto.<List<ProductResponseDto>>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Top Rated Products Retrieved Successfully").
+                        data(productService.getTopRatedProducts()).
+                        build());
+
     }
 
     /*
@@ -150,10 +208,17 @@ public class ProductController {
      */
 
     @GetMapping("/search")
-    public ResponseEntity<List<ProductResponseDto>> searchProducts(
+    public ResponseEntity<ApiResponseDto<List<ProductResponseDto>>> searchProducts(
             @RequestParam String keyword) {
 
-        return ResponseEntity.ok(productService.searchProducts(keyword));
+        return ResponseEntity.ok(
+                ApiResponseDto.<List<ProductResponseDto>>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Products Retrieved Successfully").
+                        data(productService.searchProducts(keyword)).
+                        build());
+
     }
 
     /*
@@ -163,8 +228,15 @@ public class ProductController {
      */
 
     @GetMapping("/count-by-category")
-    public ResponseEntity<List<CategoryCountDto>> countProductsByCategory() {
-        return ResponseEntity.ok(productService.countProductsByCategory());
+    public ResponseEntity<ApiResponseDto<List<CategoryCountDto>>> countProductsByCategory() {
+        return ResponseEntity.ok(
+                ApiResponseDto.<List<CategoryCountDto>>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Category Count Retrieved Successfully").
+                        data(productService.countProductsByCategory()).
+                        build());
+
     }
 
     /*
@@ -174,8 +246,15 @@ public class ProductController {
      */
 
     @GetMapping("/count-by-company")
-    public ResponseEntity<List<CompanyCountDto>> countProductsByCompany() {
-        return ResponseEntity.ok(productService.countProductsByCompany());
+    public ResponseEntity<ApiResponseDto<List<CompanyCountDto>>> countProductsByCompany() {
+        return ResponseEntity.ok(
+                ApiResponseDto.<List<CompanyCountDto>>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Company Count Retrieved Successfully").
+                        data(productService.countProductsByCompany()).
+                        build());
+
     }
 
     /*
@@ -185,8 +264,15 @@ public class ProductController {
      */
 
     @GetMapping("/count-by-status")
-    public ResponseEntity<List<StatusCountDto>> countProductsByStatus() {
+    public ResponseEntity<ApiResponseDto<List<StatusCountDto>>> countProductsByStatus() {
 
-        return ResponseEntity.ok(productService.countProductsByStatus());
+        return ResponseEntity.ok(
+                ApiResponseDto.<List<StatusCountDto>>builder().
+                        success(true).
+                        status(HttpStatus.OK.value()).
+                        message("Status Count Retrieved Successfully").
+                        data(productService.countProductsByStatus()).
+                        build());
+
     }
 }

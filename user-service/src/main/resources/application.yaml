@@ -15,7 +15,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-
+jwt:
+  validity:
+    accessToken: 3600000
+    refreshToken: 2592000000
+  secret: jwt-secret-code
 
 
 eureka:
@@ -25,4 +29,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
 server:
-  port: 8081
+  port: 8082

@@ -1,6 +1,6 @@
 package com.trainingmug.ecommerce.productservice.repository;
 
-import com.trainingmug.ecommerce.productservice.entity.Product;
+import com.trainingmug.ecommerce.productservice.document.Product;
 import com.trainingmug.ecommerce.productservice.enums.Category;
 import com.trainingmug.ecommerce.productservice.enums.Status;
 import com.trainingmug.ecommerce.productservice.projection.CategoryCountResponse;

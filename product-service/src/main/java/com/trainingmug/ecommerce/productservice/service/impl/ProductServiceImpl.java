@@ -7,7 +7,7 @@ import com.trainingmug.ecommerce.productservice.dto.response.CategoryCountDto;
 import com.trainingmug.ecommerce.productservice.dto.response.CompanyCountDto;
 import com.trainingmug.ecommerce.productservice.dto.response.ProductResponseDto;
 import com.trainingmug.ecommerce.productservice.dto.response.StatusCountDto;
-import com.trainingmug.ecommerce.productservice.entity.Product;
+import com.trainingmug.ecommerce.productservice.document.Product;
 import com.trainingmug.ecommerce.productservice.enums.Category;
 import com.trainingmug.ecommerce.productservice.enums.Status;
 import com.trainingmug.ecommerce.productservice.exception.ProductNotFoundException;

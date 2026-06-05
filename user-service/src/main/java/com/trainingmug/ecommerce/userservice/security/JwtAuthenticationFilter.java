@@ -93,5 +93,10 @@ Java 15 introduced multiline string literals
         filterChain.doFilter(request, response);
     }
 
+    @Override
+    public boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+        return path.startsWith("/api/auth");
+    }
 
 }

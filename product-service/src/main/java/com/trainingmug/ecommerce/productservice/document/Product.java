@@ -1,4 +1,4 @@
-package com.trainingmug.ecommerce.productservice.entity;
+package com.trainingmug.ecommerce.productservice.document;
 
 import com.trainingmug.ecommerce.productservice.enums.Category;
 import com.trainingmug.ecommerce.productservice.enums.Status;

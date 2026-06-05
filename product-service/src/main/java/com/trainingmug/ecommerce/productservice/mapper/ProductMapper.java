@@ -1,7 +1,7 @@
 package com.trainingmug.ecommerce.productservice.mapper;
 
 import com.trainingmug.ecommerce.productservice.dto.response.ProductResponseDto;
-import com.trainingmug.ecommerce.productservice.entity.Product;
+import com.trainingmug.ecommerce.productservice.document.Product;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
