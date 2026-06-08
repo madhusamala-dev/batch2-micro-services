@@ -2,7 +2,7 @@ package com.trainingmug.ecommerce.userservice.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.trainingmug.ecommerce.userservice.entity.User;
+import com.trainingmug.ecommerce.userservice.entity.UserReponseDto;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +27,7 @@ public class JwtUtil {
     @Value("${jwt.secret}")
     private String SECRET;
 
-    public String generateAccessToken(User user) {
+    public String generateAccessToken(UserReponseDto user) {
         Algorithm algorithm = Algorithm.HMAC256(SECRET.getBytes(StandardCharsets.UTF_8));
         return JWT.create()
                 .withSubject(user.getEmail())
@@ -38,7 +38,7 @@ public class JwtUtil {
                 .sign(algorithm);
     }
 
-    public String generateRefreshToken(User user) {
+    public String generateRefreshToken(UserReponseDto user) {
         Algorithm algorithm = Algorithm.HMAC256(SECRET.getBytes(StandardCharsets.UTF_8));
         return JWT.create()
                 .withSubject(user.getEmail())

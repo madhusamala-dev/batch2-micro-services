@@ -4,7 +4,7 @@ import com.trainingmug.ecommerce.userservice.dto.response.AuthResponseDto;
 import com.trainingmug.ecommerce.userservice.dto.request.LoginRequestDto;
 import com.trainingmug.ecommerce.userservice.dto.request.SignupRequestDto;
 import com.trainingmug.ecommerce.userservice.dto.response.UserResponseDto;
-import com.trainingmug.ecommerce.userservice.entity.User;
+import com.trainingmug.ecommerce.userservice.entity.UserReponseDto;
 import com.trainingmug.ecommerce.userservice.exception.InvalidCredentialsException;
 import com.trainingmug.ecommerce.userservice.exception.UserExistsException;
 import com.trainingmug.ecommerce.userservice.exception.UserNotFoundException;
@@ -46,7 +46,7 @@ public class AuthServiceImpl
             Find User
          */
 
-        User user =
+        UserReponseDto user =
                 userService.findByEmail(
                         loginRequestDto.getEmail()
                 );

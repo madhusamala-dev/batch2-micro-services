@@ -4,7 +4,7 @@ import com.trainingmug.ecommerce.userservice.dto.request.SignupRequestDto;
 import com.trainingmug.ecommerce.userservice.dto.request.UserRequestDto;
 import com.trainingmug.ecommerce.userservice.dto.response.UserResponseDto;
 import com.trainingmug.ecommerce.userservice.dto.response.UserStatusRequestDto;
-import com.trainingmug.ecommerce.userservice.entity.User;
+import com.trainingmug.ecommerce.userservice.entity.UserReponseDto;
 import com.trainingmug.ecommerce.userservice.exception.UserExistsException;
 import com.trainingmug.ecommerce.userservice.exception.UserNotFoundException;
 import com.trainingmug.ecommerce.userservice.repository.UserRepository;
@@ -30,22 +30,22 @@ public class UserServiceImpl implements UserService {
         userRepository.findByEmail(signupRequestDto.getEmail()).ifPresent(user -> {
             throw new UserExistsException("User already exists with email : " + signupRequestDto.getEmail());
         });
-        User user = modelMapper.map(signupRequestDto, User.class);
+        UserReponseDto user = modelMapper.map(signupRequestDto, UserReponseDto.class);
         user.setPassword(passwordEncoder.encode(signupRequestDto.getPassword()));
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
         user.setLastLoggedIn(null);
-        return modelMapper.map(userRepository.save(modelMapper.map(signupRequestDto, User.class)), UserResponseDto.class);
+        return modelMapper.map(userRepository.save(modelMapper.map(signupRequestDto, UserReponseDto.class)), UserResponseDto.class);
     }
 
     @Override
-    public User findByEmail(String email) throws UserNotFoundException {
+    public UserReponseDto findByEmail(String email) throws UserNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found with email : " + email));
     }
 
     @Override
     public UserResponseDto update(UserRequestDto userRequestDto) throws UserNotFoundException {
-        User user = userRepository.findByEmail(userRequestDto.getEmail()).orElseThrow(() -> new UserNotFoundException("User not found with email : " + userRequestDto.getEmail()));
+        UserReponseDto user = userRepository.findByEmail(userRequestDto.getEmail()).orElseThrow(() -> new UserNotFoundException("User not found with email : " + userRequestDto.getEmail()));
 
         user.setName(userRequestDto.getName());
         user.setEmail(userRequestDto.getEmail());
